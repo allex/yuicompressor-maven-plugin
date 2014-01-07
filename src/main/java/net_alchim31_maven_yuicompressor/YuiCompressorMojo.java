@@ -25,62 +25,61 @@ import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
  * @created 2007-08-28
  * @threadSafe
  */
-// @SuppressWarnings("unchecked")
 public class YuiCompressorMojo extends MojoSupport {
 
     /**
      * Read the input file using "encoding".
      *
-     * @parameter expression="${file.encoding}" default-value="UTF-8"
+     * @parameter property="file.encoding" default-value="UTF-8"
      */
     private String encoding;
 
     /**
      * The output filename suffix.
      *
-     * @parameter expression="${maven.yuicompressor.suffix}" default-value="-min"
+     * @parameter property="maven.yuicompressor.suffix" default-value="-min"
      */
     private String suffix;
 
     /**
      * If no "suffix" must be add to output filename (maven's configuration manage empty suffix like default).
      *
-     * @parameter expression="${maven.yuicompressor.nosuffix}" default-value="false"
+     * @parameter property="maven.yuicompressor.nosuffix" default-value="false"
      */
     private boolean nosuffix;
 
     /**
      * Insert line breaks in output after the specified column number.
      *
-     * @parameter expression="${maven.yuicompressor.linebreakpos}" default-value="-1"
+     * @parameter property="maven.yuicompressor.linebreakpos" default-value="-1"
      */
     private int linebreakpos;
 
     /**
      * [js only] No compression
      *
-     * @parameter expression="${maven.yuicompressor.nocompress}" default-value="false"
+     * @parameter property="maven.yuicompressor.nocompress" default-value="false"
      */
     private boolean nocompress;
 
     /**
      * [js only] Minify only, do not obfuscate.
      *
-     * @parameter expression="${maven.yuicompressor.nomunge}" default-value="false"
+     * @parameter property="maven.yuicompressor.nomunge" default-value="false"
      */
     private boolean nomunge;
 
     /**
      * [js only] Preserve unnecessary semicolons.
      *
-     * @parameter expression="${maven.yuicompressor.preserveAllSemiColons}" default-value="false"
+     * @parameter property="maven.yuicompressor.preserveAllSemiColons" default-value="false"
      */
     private boolean preserveAllSemiColons;
 
     /**
      * [js only] disable all micro optimizations.
      *
-     * @parameter expression="${maven.yuicompressor.disableOptimizations}" default-value="false"
+     * @parameter property="maven.yuicompressor.disableOptimizations" default-value="false"
      */
     private boolean disableOptimizations;
 
@@ -88,7 +87,7 @@ public class YuiCompressorMojo extends MojoSupport {
      * force the compression of every files,
      * else if compressed file already exists and is younger than source file, nothing is done.
      *
-     * @parameter expression="${maven.yuicompressor.force}" default-value="false"
+     * @parameter property="maven.yuicompressor.force" default-value="false"
      */
     private boolean force;
 
@@ -104,20 +103,20 @@ public class YuiCompressorMojo extends MojoSupport {
     /**
      * request to create a gzipped version of the yuicompressed/aggregation files.
      *
-     * @parameter expression="${maven.yuicompressor.gzip}" default-value="false"
+     * @parameter property="maven.yuicompressor.gzip" default-value="false"
      */
     private boolean gzip;
 
     /**
      * show statistics (compression ratio).
      *
-     * @parameter expression="${maven.yuicompressor.statistics}" default-value="true"
+     * @parameter property="maven.yuicompressor.statistics" default-value="true"
      */
     private boolean statistics;
 
     /**
      * aggregate files before minify
-     * @parameter expression="${maven.yuicompressor.preProcessAggregates}" default-value="false"
+     * @parameter property="maven.yuicompressor.preProcessAggregates" default-value="false"
      */
     private boolean preProcessAggregates;
 
@@ -201,7 +200,7 @@ public class YuiCompressorMojo extends MojoSupport {
             }
             else if (".js".equalsIgnoreCase(src.getExtension())) {
                 JavaScriptCompressor compressor = new JavaScriptCompressor(in, jsErrorReporter_);
-                compressor.compress(out, linebreakpos, !nomunge, jswarn, preserveAllSemiColons, disableOptimizations);
+                compressor.compress(out, null, linebreakpos, !nomunge, jswarn, preserveAllSemiColons, disableOptimizations);
             } else if (".css".equalsIgnoreCase(src.getExtension())) {
                 compressCss(in, out);
             }
