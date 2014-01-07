@@ -17,11 +17,15 @@ Summary of the project history can be found in [CHANGELOG](https://github.com/da
 
 Found a bug? Have an idea? Report it to the [issue tracker](https://github.com/davidB/yuicompressor-maven-plugin/issues?state=open)
 
+# TODOs
+
+* compress js with closure-compiler
 
 # Developers
 
 * [David Bernard](https://github.com/davidB)
 * [Piotr Kuczynski](https://github.com/pkuczynski)
+* [Allex Wang](https://github.com/allex)
 
 
 # License
